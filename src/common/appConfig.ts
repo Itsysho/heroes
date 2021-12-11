@@ -1,3 +1,5 @@
 export enum RouteSection {
-  Hero = "/heroes/*",
+  Hero = "/heroes",
 }
+
+export const DEFAULT_ROUTE = RouteSection.Hero;

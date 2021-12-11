@@ -9,7 +9,7 @@ const errorColor = "#f05050";
 const fontWeightMedium = 600;
 const fontWeightBold = 900;
 
-export const theme = createTheme({
+const defaultTheme = createTheme({
   palette: {
     common: {
       black: textColor,
@@ -35,3 +35,15 @@ export const theme = createTheme({
     fontWeightBold,
   },
 });
+
+export const theme = {
+  ...defaultTheme,
+  components: {
+    MuiCard: {
+      styleOverrides: { root: { width: 230, margin: defaultTheme.spacing(1) } },
+    },
+    MuiCardContent: {
+      styleOverrides: { root: { textAlign: "center" } },
+    },
+  },
+};
