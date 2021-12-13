@@ -24,3 +24,10 @@ export const mockHeroList = [
       "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0/standard_xlarge.jpg",
   },
 ];
+
+export const mockHeroProfile = {
+  str: 2,
+  int: 7,
+  agi: 9,
+  luk: 7,
+};
