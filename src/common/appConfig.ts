@@ -1,10 +1,5 @@
-enum RouteSection {
+export enum RouteSection {
   Hero = "/heroes",
 }
 
-export const routePath = {
-  hero: {
-    base: RouteSection.Hero,
-    profile: `${RouteSection.Hero}/:heroId`,
-  },
-};
+export const DEFAULT_ROUTE = RouteSection.Hero;

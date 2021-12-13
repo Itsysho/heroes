@@ -1,16 +1,23 @@
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import { routePath } from "./common/appConfig";
-import Heros from "./containers/hero/Heros";
+import { ThemeProvider } from "@mui/material";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { DEFAULT_ROUTE, RouteSection } from "./common/appConfig";
+import { theme } from "./common/styles";
+import Hero from "./containers/hero/Hero";
 
 function App() {
   return (
     <Router>
-      <div>
+      <ThemeProvider theme={theme}>
         <Routes>
-          <Route path={routePath.hero.base} element={<Heros />} />
-          <Route path="*" element={<Heros />} />
+          <Route path={`${RouteSection.Hero}/*`} element={<Hero />} />
+          <Route path="*" element={<Navigate to={DEFAULT_ROUTE} />} />
         </Routes>
-      </div>
+      </ThemeProvider>
     </Router>
   );
 }

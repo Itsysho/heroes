@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Heroes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Code name ne hero
 
 ## Available Scripts
 
@@ -39,8 +39,29 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Skill set
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- react (with [create-react-app](https://github.com/facebook/create-react-app))
+- redux
+- redux-observable/rx.js
+- [material-ui](https://material-ui.com/)
+- other [modules used by react-scripts](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/package.json)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Directory structure
+
+```
+ui/
+├ public/ index.html and other public static assets (e.g. favicon)
+├ src/
+│ ├ common/ common variables, e.g. appConfig.ts for route path and env variables, storageKey.ts for storage key string..etc
+│ ├ models/ type define of requests and responses
+│ ├ components/ global usage components without connecting with store
+│ ├ containers/ components connect to store and with child components
+│ ├ reducers/ reducer functions, will handle dispatched action
+│ ├ epics/ redux-observable epics, mainly with ajax call uilities
+│ ├ store/ redux store/middleware configuration
+│ ├ utils/ ajax request and response subject usage utils
+│ └ index.tsx
+└ .env common usage system variables for create-react-app
+
+```
