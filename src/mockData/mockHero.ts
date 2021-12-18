@@ -1,4 +1,6 @@
-export const mockHeroList = [
+import { Hero, HeroProfile } from "../models/hero";
+
+export const mockHeroList: Hero[] = [
   {
     id: "1",
     name: "Daredevil",
@@ -25,7 +27,7 @@ export const mockHeroList = [
   },
 ];
 
-export const mockHeroProfile = {
+export const mockHeroProfile: HeroProfile = {
   str: 2,
   int: 7,
   agi: 9,
