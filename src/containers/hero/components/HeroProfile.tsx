@@ -1,13 +1,28 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Box, Button, Grid } from "@mui/material";
 import Rating from "../../../components/Rating";
-import { mockHeroProfile } from "../../../mockData/mockHero";
+import { HeroProfile as HeroProfileModel } from "../../../models/hero";
 
-export default function HeroProfile() {
+interface Props {
+  profile?: HeroProfileModel;
+  onGetProfile: (is: string) => void;
+}
+
+export default function HeroProfile({ profile, onGetProfile }: Props) {
+  const { id } = useParams();
+
+  useEffect(() => {
+    onGetProfile(id!);
+  }, [onGetProfile, id]);
+
+  if (!profile) return null;
   return (
     <Grid container spacing={2}>
       <Grid item xs={6}>
-        {Object.entries(mockHeroProfile).map(([key, value]) => (
+        {Object.entries(profile).map(([key, value]) => (
           <Rating
+            key={key}
             name={key}
             value={value}
             onChange={(data) => console.log(data)}
