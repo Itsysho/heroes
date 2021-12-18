@@ -2,14 +2,21 @@ import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router";
 import { StoreState } from "../../reducers";
-import { getHeroAction, getHeroProfileAction } from "../../reducers/heroAction";
+import {
+  getHeroAction,
+  getHeroProfileAction,
+  updateHeroProfileAction,
+} from "../../reducers/heroAction";
+import { HeroProfile as HeroProfileModel } from "../../models/hero";
 import HeroList from "./components/HeroList";
 import HeroProfile from "./components/HeroProfile";
+import { selectHeroProfile } from "../../reducers/heroSelector";
 
 export default function Hero() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { hero, heroProfile } = useSelector((state: StoreState) => state.hero);
+  const { hero } = useSelector((state: StoreState) => state.hero);
+  const { profile, powerMax } = useSelector(selectHeroProfile);
   const handleGetHero = useCallback(() => {
     dispatch(getHeroAction());
   }, [dispatch]);
@@ -19,12 +26,16 @@ export default function Hero() {
     },
     [dispatch]
   );
+  const handleUpdateHeroProfile = useCallback(
+    (data: { id: string; data: HeroProfileModel }) => {
+      dispatch(updateHeroProfileAction(data));
+    },
+    [dispatch]
+  );
 
   const handleCardClick = (id: string) => {
     navigate(`${id}`);
   };
-
-  console.log("render");
 
   useEffect(() => {
     handleGetHero();
@@ -42,7 +53,9 @@ export default function Hero() {
             element={
               <HeroProfile
                 onGetProfile={handleGetHeroProfile}
-                profile={heroProfile}
+                onUpdateHeroProfile={handleUpdateHeroProfile}
+                profile={profile}
+                powerMax={powerMax}
               />
             }
           />

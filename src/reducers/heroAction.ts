@@ -33,11 +33,10 @@ export const getHeroProfileSuccessAction = (payload: HeroProfile) => ({
   payload,
 });
 
-export const updateHeroProfileAction = (payload: HeroProfile) => ({
+export const updateHeroProfileAction = (payload: {
+  id: string;
+  data: HeroProfile;
+}) => ({
   type: HeroActionType.UPDATE_PROFILE,
   payload,
-});
-
-export const updateHeroProfileSuccessAction = () => ({
-  type: HeroActionType.UPDATE_PROFILE_SUCCESS,
 });

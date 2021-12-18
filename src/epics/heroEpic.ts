@@ -2,10 +2,10 @@ import { catchError, empty, exhaustMap, from, map, Observable } from "rxjs";
 import { AnyAction } from "redux";
 import { ofType } from "redux-observable";
 import {
+  getHeroProfileAction,
   getHeroProfileSuccessAction,
   getHeroSuccessAction,
   HeroActionType,
-  updateHeroProfileSuccessAction,
 } from "../reducers/heroAction";
 import * as HeroServices from "../services/heroServices";
 
@@ -36,7 +36,7 @@ const updateHeroProfileEpic = (action$: Observable<AnyAction>) =>
     ofType(HeroActionType.UPDATE_PROFILE),
     exhaustMap(({ payload }) =>
       from(HeroServices.updateHeroProfileAjax(payload)).pipe(
-        map(() => updateHeroProfileSuccessAction()),
+        map(() => getHeroProfileAction(payload.id)),
         catchError(() => empty())
       )
     )
